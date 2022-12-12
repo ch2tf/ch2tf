@@ -69,7 +69,7 @@ class TrafficGenerator:
         time.sleep(wait_time)
 
     def _read_traffic(self, file_path: str, wait_time: float):
-        log.info("hello")
+        log.info("read_traffic")
         iteration = 0
         scapy_cap = rdpcap(file_path)
         for packet in scapy_cap:
