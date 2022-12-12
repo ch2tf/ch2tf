@@ -1,0 +1,13 @@
+python-dotenv==0.19.2
+pyshark~=0.5.3
+kafka-python~=2.0.2
+pybloom_live~=3.1.0
+faker~=14.2.0
+dataclasses-json~=0.5.7
+numpy~=1.23.3
+scipy~=1.9.1
+scapy~=2.4.5
+matplotlib~=3.6.0
+tqdm~=4.64.1
+seaborn~=0.12.1
+cryptography~=38.0.4
