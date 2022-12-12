@@ -12,14 +12,33 @@
 
 - Requires traffic files or sniffer
   - insert path in `.env` or in `docker-compose.yml`
-- `docker compose build`
-- `docker compose up`
-
-### Local:
-
 - start ZooKeeper and Kafka:
   - `docker compose build`
   - `docker compose up zookeeper kafka`
+
+While publishing a message in a non-existing topic creates the topic using this configuration,
+in a 'fresh' install at the time of topic subscription it behaves differently.
+Using this library, it does not subscribe to the topic if it does not exist yet.
+The commands below create the default topics:
+- `docker-compose exec kafka kafka-topics --create --bootstrap-server \
+  localhost:9092 --replication-factor 1 --partitions 1 --topic lowprob.REQ`
+- `docker-compose exec kafka kafka-topics --create --bootstrap-server \
+  localhost:9092 --replication-factor 1 --partitions 1 --topic lowprob.RES`
+- `docker-compose exec kafka kafka-topics --create --bootstrap-server \
+  localhost:9092 --replication-factor 1 --partitions 1 --topic highprob.REQ`
+- `docker-compose exec kafka kafka-topics --create --bootstrap-server \
+  localhost:9092 --replication-factor 1 --partitions 1 --topic highprob.RES`
+
+In subsequent 'runs', it is not necessary to use recreate the topics.
+
+
+### Docker
+
+- `docker compose up`
+
+
+### Local:
+
 - ensure python version >= 3.10 !
   - `python --version`
 - `pip3 install -r requirements.txt`
