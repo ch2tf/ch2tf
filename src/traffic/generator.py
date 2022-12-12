@@ -22,14 +22,7 @@ from src.models import PacketData
 import datetime
 import logging
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - [%(levelname)s] - %(message)s",
-    handlers=[logging.StreamHandler()],
-)
-log = logging.getLogger("trafficGen")
-log.setLevel(logging.DEBUG)
+log = logging.getLogger(__name__)
 
 
 class TrafficGenerator:
@@ -69,7 +62,7 @@ class TrafficGenerator:
         time.sleep(wait_time)
 
     def _read_traffic(self, file_path: str, wait_time: float):
-        log.info("read_traffic")
+        log.info("reading traffic")
         iteration = 0
         scapy_cap = rdpcap(file_path)
         for packet in scapy_cap:

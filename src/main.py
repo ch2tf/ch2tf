@@ -44,10 +44,11 @@ if __name__ == "__main__":
         level=logging.INFO,
         format="%(asctime)s - [%(levelname)s] - %(message)s",
         handlers=[
-            RotatingFileHandler("../logs/log.log", maxBytes=1_000_000, backupCount=10),
             logging.StreamHandler(),
+            RotatingFileHandler("../logs/log.log", backupCount=10, maxBytes=1_000_000),
         ],
     )
+    log.info('starting...')
     kafka_logger = logging.getLogger("kafka")
     kafka_logger.setLevel(logging.ERROR)
     # upon startup kafka and zookeeper might not be ready yet,
